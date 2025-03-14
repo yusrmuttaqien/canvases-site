@@ -17,12 +17,27 @@ onMounted(() => {
 
   const timeline = gsap.timeline();
 
-  timeline.to(titleChars.chars, {
-    y: "0%",
-    duration: 1,
-    stagger: 0.075,
-    ease: "power4.out",
-  });
+  timeline.to(title.value, { opacity: 1 });
+  timeline.to(
+    titleChars.chars,
+    {
+      y: "0%",
+      duration: 1,
+      stagger: 0.075,
+      ease: "power4.out",
+    },
+    "<0.1",
+  );
+  timeline.to(
+    titleChars.chars,
+    {
+      y: "0%",
+      duration: 1,
+      stagger: 0.075,
+      ease: "power4.out",
+    },
+    "<",
+  );
   timeline.to(
     "#intro",
     {
@@ -70,7 +85,7 @@ onMounted(() => {
         </div>
         <h1
           ref="title"
-          class="font-grand pointer-events-none text-[calc(100cqw/8*3.26)] uppercase"
+          class="font-grand pointer-events-none text-[calc(100cqw/8*3.26)] uppercase opacity-0"
         >
           Canvases
         </h1>
