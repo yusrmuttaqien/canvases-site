@@ -18,4 +18,5 @@ export default defineNuxtConfig({
       prerender: true,
     },
   },
+  nitro: { preset: "vercel" },
 });
