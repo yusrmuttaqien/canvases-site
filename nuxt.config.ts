@@ -17,5 +17,4 @@ export default defineNuxtConfig({
       swr: 300,
     },
   },
-  nitro: { preset: "vercel" },
 });
