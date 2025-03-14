@@ -4,20 +4,19 @@ import {
   routes as routesRoot,
   routesChildrens,
 } from "~/components/navbar/constants";
+import GMRegular from "~/assets/fonts/gm-regular.woff";
 import type { Routes, RoutesChildrens } from "~/components/navbar/types";
 
-if (process.env.NODE_ENV === "production") {
-  useHead({
-    link: [
-      {
-        as: "font",
-        rel: "preload",
-        type: "font/woff",
-        href: "~/assets/fonts/gm-regular.woff",
-      },
-    ],
-  });
-}
+useHead({
+  link: [
+    {
+      as: "font",
+      rel: "preload",
+      href: GMRegular,
+      type: "font/woff",
+    },
+  ],
+});
 
 const currentRoute = useRoute();
 const router = useRouter();
