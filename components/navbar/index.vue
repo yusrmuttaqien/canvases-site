@@ -14,6 +14,7 @@ useHead({
       rel: "preload",
       href: GMRegular,
       type: "font/woff",
+      crossorigin: "anonymous",
     },
   ],
 });
