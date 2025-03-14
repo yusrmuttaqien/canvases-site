@@ -17,9 +17,5 @@ export default defineNuxtConfig({
       swr: 300,
       prerender: true,
     },
-    "/": {
-      swr: 300,
-      prerender: true,
-    },
   },
 });

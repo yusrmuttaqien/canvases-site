@@ -1,4 +1,21 @@
 @import "tailwindcss";
+@font-face {
+  font-family: "Grand mighty";
+  src: url("~/assets/fonts/gm-regular.woff");
+}
+@theme {
+  --font-grand: "Grand mighty";
+}
+@custom-variant hoverable {
+  @media (hover: hover) {
+    @slot;
+  }
+}
+@custom-variant unhoverable {
+  @media (hover: none) {
+    @slot;
+  }
+}
 
 body {
   @apply relative overflow-hidden bg-amber-300;

@@ -6,7 +6,7 @@
   </main>
 </template>
 
-<style>
+<style scoped>
 p {
   font-family: cursive;
 }

@@ -101,7 +101,8 @@ onUnmounted(() => {
           />
           <span
             id="text"
-            class="font-extrabold whitespace-nowrap text-white uppercase"
+            class="font-extrabold whitespace-nowrap text-white uppercase transition-colors
+              duration-300"
           >
             Go back
           </span>
@@ -110,18 +111,19 @@ onUnmounted(() => {
           layout
           :to="route.path"
           :key="route.path"
-          :replace="!routes.isChildrenRoot && routes.isChildren"
           v-for="route in routes.routes"
+          :replace="!routes.isChildrenRoot && routes.isChildren"
         >
           <Motion
             as="span"
             id="background"
+            :layout-id="'path-highlight'"
             v-if="currentRoute.path === route.path"
-            layout-id="path-highlight"
           />
           <span
             id="text"
-            class="font-extrabold whitespace-nowrap text-white uppercase"
+            class="font-extrabold whitespace-nowrap text-white uppercase transition-colors
+              duration-300"
           >
             {{ route.name }}
           </span>
@@ -129,6 +131,22 @@ onUnmounted(() => {
       </Motion>
     </AnimatePresence>
   </nav>
+  <NuxtLink
+    id="ym"
+    to="/about"
+    :data-active="currentRoute.path === '/about'"
+    class="absolute right-0 bottom-0 isolate z-10 block cursor-pointer mix-blend-difference"
+  >
+    <Motion
+      as="span"
+      id="background"
+      :layout-id="'path-highlight'"
+      v-if="currentRoute.path === '/about'"
+    />
+    <NavbarYm
+      class="relative z-10 w-12 text-white transition-colors duration-300"
+    />
+  </NuxtLink>
 </template>
 
 <style>
@@ -139,11 +157,13 @@ nav button {
   @apply relative isolate inline-block p-1 px-1.5;
 }
 nav a.router-link-exact-active #text,
-nav button[data-active="true"] #text {
-  @apply relative z-10 text-black transition-colors duration-300;
+nav button[data-active="true"] #text,
+#ym[data-active="true"] svg {
+  @apply relative z-10 text-black;
 }
 nav a span#background,
-nav button span#background {
+nav button span#background,
+#ym span#background {
   @apply absolute inset-0 z-0 bg-white;
 }
 </style>
