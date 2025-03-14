@@ -15,7 +15,6 @@ export default defineNuxtConfig({
   routeRules: {
     "/**": {
       swr: 300,
-      prerender: true,
     },
   },
   nitro: { preset: "vercel" },
