@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page" },
   },
-  modules: ["motion-v/nuxt", "@nuxt/fonts"],
+  modules: ["motion-v/nuxt"],
   routeRules: {
     "/**": {
       swr: 300,

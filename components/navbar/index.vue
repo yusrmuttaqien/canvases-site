@@ -133,6 +133,7 @@ onUnmounted(() => {
   </nav>
   <NuxtLink
     id="ym"
+    prefetch
     to="/about"
     :data-active="currentRoute.path === '/about'"
     class="absolute right-0 bottom-0 isolate z-10 block cursor-pointer mix-blend-difference"
