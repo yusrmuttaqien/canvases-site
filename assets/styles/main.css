@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+body {
+  @apply relative overflow-hidden bg-amber-300;
+}
+
+html,
+body,
+main {
+  @apply min-h-dvh min-w-dvw scroll-smooth;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+.page-enter-from {
+  @apply scale-150;
+}
+.page-enter-to {
+  @apply scale-100;
+}
+.page-leave-to {
+  @apply scale-50;
+}
