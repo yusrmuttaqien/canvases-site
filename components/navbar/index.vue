@@ -4,20 +4,7 @@ import {
   routes as routesRoot,
   routesChildrens,
 } from "~/components/navbar/constants";
-import GMRegular from "~/assets/fonts/gm-regular.woff";
 import type { Routes, RoutesChildrens } from "~/components/navbar/types";
-
-useHead({
-  link: [
-    {
-      as: "font",
-      rel: "preload",
-      href: GMRegular,
-      type: "font/woff",
-      crossorigin: "anonymous",
-    },
-  ],
-});
 
 const currentRoute = useRoute();
 const router = useRouter();
@@ -84,7 +71,7 @@ onUnmounted(() => {
 
 <template>
   <nav
-    class="absolute top-0 right-0 left-0 z-10 m-3 text-center mix-blend-difference"
+    class="fixed top-0 right-0 left-0 z-10 m-3 text-center mix-blend-difference"
   >
     <AnimatePresence mode="popLayout" :initial="false">
       <Motion
@@ -148,7 +135,7 @@ onUnmounted(() => {
     id="ym"
     to="/about"
     :data-active="currentRoute.path === '/about'"
-    class="absolute right-0 bottom-0 isolate z-10 block cursor-pointer mix-blend-difference"
+    class="fixed right-0 bottom-0 isolate z-10 block cursor-pointer mix-blend-difference"
   >
     <Motion
       as="span"

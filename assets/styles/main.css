@@ -16,15 +16,26 @@
     @slot;
   }
 }
+@utility hide-scrollbar {
+  --ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 body {
-  @apply relative overflow-hidden bg-amber-300;
+  @apply relative bg-amber-300;
+}
+body:has(main.page-enter-active),
+body:has(main.page-leave-active) {
+  @apply overflow-hidden;
 }
 
 html,
 body,
 main {
-  @apply min-h-dvh min-w-dvw scroll-smooth;
+  @apply hide-scrollbar min-h-dvh min-w-full scroll-smooth;
 }
 
 .page-enter-active,
