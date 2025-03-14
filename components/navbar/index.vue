@@ -6,17 +6,6 @@ import {
 } from "~/components/navbar/constants";
 import type { Routes, RoutesChildrens } from "~/components/navbar/types";
 
-useHead({
-  link: [
-    {
-      as: "font",
-      rel: "preload",
-      type: "font/woff",
-      href: "~/assets/fonts/gm-regular.woff",
-    },
-  ],
-});
-
 const currentRoute = useRoute();
 const router = useRouter();
 
