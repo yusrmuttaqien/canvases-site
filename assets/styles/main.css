@@ -49,7 +49,7 @@ main {
 .page-enter-active {
   transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
   position: absolute;
-  top: var(--scroll-y);
+  top: var(--scroll-y-slide-up);
 }
 .page-enter-from,
 .page-leave-to {

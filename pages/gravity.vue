@@ -14,6 +14,7 @@ type TBall = {
   ctx: CanvasRenderingContext2D;
 };
 const canvas = ref<HTMLCanvasElement | null>(null);
+const pageTransition = usePtSlideUp();
 
 let balls: InstanceType<typeof Ball>[] = [];
 const controller = new AbortController();
@@ -145,6 +146,7 @@ function createBalls(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   loop();
 }
 
+definePageMeta({ pageTransition });
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

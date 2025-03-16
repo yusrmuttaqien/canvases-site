@@ -27,6 +27,7 @@ let mousePos = ref<UnwrapRef<TCircle["mousePos"]>>({
   offset: 100,
   grow: 120,
 });
+const pageTransition = usePtSlideUp();
 
 let circles: InstanceType<typeof Circle>[] = [];
 const controller = new AbortController();
@@ -224,6 +225,7 @@ function createCircles(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   loop();
 }
 
+definePageMeta({ pageTransition });
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

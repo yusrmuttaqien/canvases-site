@@ -19,6 +19,7 @@ type TSquare = {
   }>;
 };
 const canvas = ref<HTMLCanvasElement | null>(null);
+const pageTransition = usePtSlideUp();
 
 const controller = new AbortController();
 let isDrawing = true;
@@ -189,6 +190,7 @@ function createSquare(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   loop();
 }
 
+definePageMeta({ pageTransition });
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

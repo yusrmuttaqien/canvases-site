@@ -5,8 +5,10 @@ import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 let gsapCtx: gsap.Context | undefined;
+let setMainTransition: gsap.core.Tween;
 let controller: AbortController | undefined;
 const isSettled = usePageSettled();
+const pageTransition = usePtSlideUp();
 const explanations = [
   {
     ids: {
@@ -194,6 +196,11 @@ function animatePage() {
   const styles = getComputedStyle(document.documentElement);
   const black = styles.getPropertyValue("--color-black");
   const amber = styles.getPropertyValue("--color-amber-300");
+  setMainTransition = gsap.set("main", {
+    transition:
+      "color 0.5s, background-color 0.5s, background-color 0.5s, background-color 0.5s",
+  });
+  let updateCount = 0;
 
   gsap.set("main", {
     color: black,
@@ -205,6 +212,13 @@ function animatePage() {
       start: "top top",
       end: "bottom bottom",
       trigger: "main",
+      onUpdate() {
+        if (updateCount <= 2) {
+          updateCount++;
+        } else {
+          setMainTransition.revert();
+        }
+      },
     },
     backgroundColor: black,
     color: amber,
@@ -227,13 +241,16 @@ function animate(controller: AbortController) {
   });
 }
 
+definePageMeta({ pageTransition });
 useGsapInitial(
   () => {
     controller = new AbortController();
 
     animate(controller);
   },
-  undefined,
+  (isLeaving) => {
+    if (isLeaving) setMainTransition?.revert();
+  },
   undefined,
   () => {
     gsapCtx?.revert();

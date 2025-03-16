@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const pageTransition = usePtSlideUp();
+
+definePageMeta({ pageTransition });
+</script>
+
 <template>
   <main class="grid place-items-center">
     <p class="p4 text-center text-4xl font-extrabold text-amber-600">
