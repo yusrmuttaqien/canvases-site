@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PAGE_TRANSITION_DURATION } from "~/constants/app";
+
 type TBall = {
   x: number;
   y: number;
@@ -157,7 +159,7 @@ onMounted(() => {
 onUnmounted(() => {
   setTimeout(() => {
     isDrawing = false;
-  }, 400);
+  }, PAGE_TRANSITION_DURATION);
   controller.abort();
 });
 </script>

@@ -20,7 +20,7 @@ const explanations = [
       target: "what-learned",
       trigger: "wrapper-what-learned",
     },
-    text: "by creating this website, I learned about Vue & Nuxt.js (I am a former React & Next.js user ⚛️), more about GSAP and layout animation, and of course, HTML Canvas 🎨.",
+    text: "by creating this website, I learned about the beauty and flaws of Vue & Nuxt.js (I am a former React & Next.js dev ⚛️. I found Vue & Nuxt to be miles more delightful 🥰), more about GSAP and layout animations, and of course, HTML Canvas 🎨.",
   },
 ];
 
@@ -196,8 +196,8 @@ function animatePage() {
   const amber = styles.getPropertyValue("--color-amber-300");
 
   gsap.set("main", {
-    backgroundColor: amber,
     color: black,
+    backgroundColor: amber,
   });
   gsap.to("main", {
     scrollTrigger: {
@@ -272,13 +272,14 @@ useGsapInitial(
               class="underline"
               to="https://yusrmuttaqien.com"
             >
-              yusrmuttaqien</NuxtLink
-            >
+              yusrmuttaqien
+            </NuxtLink>
           </p>
         </div>
         <h1
           id="title"
-          class="font-grand pointer-events-none text-[calc(100cqw/8*3.28)] uppercase opacity-0"
+          class="font-grand pointer-events-none -ml-[0.05em] text-center
+            text-[calc(100cqw/8*3.3)] uppercase opacity-0"
         >
           Canvases
         </h1>
@@ -288,11 +289,11 @@ useGsapInitial(
       :key="explanation.text"
       :id="explanation.ids.trigger"
       v-for="explanation in explanations"
-      class="grid h-dvh place-content-center"
+      class="grid min-h-dvh place-content-center py-36"
     >
       <p
         :id="explanation.ids.target"
-        class="ml-[2vw] max-w-[50rem] text-4xl leading-[1.2em] font-bold opacity-30"
+        class="max-w-[50rem] text-4xl leading-[1.2em] font-bold opacity-30"
       >
         {{ explanation.text }}
       </p>

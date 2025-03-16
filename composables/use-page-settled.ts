@@ -1,3 +1,5 @@
+import { HMR_DURATION } from "~/constants/app";
+
 export default function usePageSettled() {
   const nuxtApp = useNuxtApp();
   const states = useGsapStates();
@@ -19,7 +21,7 @@ export default function usePageSettled() {
     if (isHMR.value) {
       clearTimeout(timeout);
 
-      timeout = setTimeout(() => (isSettled.value = true), 500);
+      timeout = setTimeout(() => (isSettled.value = true), HMR_DURATION);
     } else {
       isSettled.value = true;
     }

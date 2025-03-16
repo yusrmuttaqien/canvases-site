@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import GMRegular from "~/assets/fonts/gm-regular.woff";
+import "~/assets/styles/main.css";
 
 useHead({
   link: [
@@ -16,5 +17,6 @@ useHead({
 
 <template>
   <Navbar />
+  <!-- <GithubLink /> -->
   <slot />
 </template>

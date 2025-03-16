@@ -1,6 +1,8 @@
+import { PAGE_TRANSITION_DURATION, HMR_DURATION } from "~/constants/app";
+
 export default function useGSAPInitial(
   func: VoidFunction,
-  beforeUnmountFunc?: VoidFunction,
+  beforeUnmountFunc?: (isLeaving: boolean) => void,
   beforeNavigationFunc?: VoidFunction,
   beforeUnmountOrNavigationFunc?: VoidFunction,
 ) {
@@ -9,7 +11,7 @@ export default function useGSAPInitial(
   const states = useGsapStates();
   let beforeEach: VoidFunction;
   let timeout: NodeJS.Timeout;
-  let isAboutToLeave = false;
+  let isAboutToLeave = ref(false);
   const isHMR = computed(
     () => states.value.hmr.last !== states.value.hmr.recent,
   );
@@ -22,14 +24,14 @@ export default function useGSAPInitial(
   onMounted(() => {
     beforeEach = router.beforeEach((to, from) => {
       const isLeaving = to.path !== from.path;
-      isAboutToLeave = isLeaving;
+      isAboutToLeave.value = isLeaving;
 
       if (isLeaving) {
         clearHook();
         setTimeout(() => {
           beforeNavigationFunc?.();
           beforeUnmountOrNavigationFunc?.();
-        }, 400);
+        }, PAGE_TRANSITION_DURATION);
       }
     });
 
@@ -42,11 +44,11 @@ export default function useGSAPInitial(
 
     clearTimeout(timeout);
 
-    timeout = setTimeout(func, 500);
+    timeout = setTimeout(func, HMR_DURATION);
   });
   onBeforeUnmount(() => {
     beforeEach();
-    beforeUnmountFunc?.();
-    if (!isAboutToLeave) beforeUnmountOrNavigationFunc?.();
+    beforeUnmountFunc?.(isAboutToLeave.value);
+    if (!isAboutToLeave.value) beforeUnmountOrNavigationFunc?.();
   });
 }

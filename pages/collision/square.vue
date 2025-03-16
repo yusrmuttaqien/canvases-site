@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { animate } from "motion";
+import { PAGE_TRANSITION_DURATION } from "~/constants/app";
 import type { Ref, UnwrapRef } from "vue";
 
 type TSquare = {
@@ -208,7 +209,7 @@ onMounted(() => {
 onUnmounted(() => {
   setTimeout(() => {
     isDrawing = false;
-  }, 400);
+  }, PAGE_TRANSITION_DURATION);
   controller.abort();
 });
 </script>

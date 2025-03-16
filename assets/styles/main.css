@@ -24,8 +24,8 @@
   }
 }
 
-body {
-  @apply relative bg-amber-300;
+#__nuxt {
+  @apply relative;
 }
 body:has(main.page-enter-active),
 body:has(main.page-leave-active) {
@@ -34,28 +34,33 @@ body:has(main.page-leave-active) {
 
 html,
 body,
+#__nuxt,
 main {
-  @apply hide-scrollbar min-h-dvh min-w-full scroll-smooth;
+  @apply hide-scrollbar min-h-dvh min-w-full bg-amber-300;
 }
 
-.page-enter-active,
+/* TODO: Try javascript page transition with Transition hooks */
 .page-leave-active {
-  transition: all 0.4s;
+  position: relative;
+  transition:
+    all 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+    translate 0.45s cubic-bezier(0.33, 1, 0.68, 1) 0.15s;
+}
+.page-enter-active {
+  transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--scroll-y);
 }
 .page-enter-from,
 .page-leave-to {
-  opacity: 0;
-  filter: blur(1rem);
+  filter: brightness(0.5);
 }
 .page-enter-from {
-  @apply scale-150;
+  @apply translate-y-full;
 }
 .page-enter-to {
-  @apply scale-100;
+  @apply translate-y-0;
 }
 .page-leave-to {
-  @apply scale-50;
+  @apply -translate-y-[6.25rem];
 }

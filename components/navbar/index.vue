@@ -78,7 +78,7 @@ onUnmounted(() => {
         layout
         as="div"
         :key="routes.parentKey"
-        class="flex flex-wrap justify-center gap-3"
+        class="hide-scrollbar flex flex-wrap gap-3"
         :initial="{ opacity: 0, x: routeForward ? 100 : -100 }"
         :animate="{ opacity: 1, x: 0, transition: { duration: 0.3 } }"
         :exit="{

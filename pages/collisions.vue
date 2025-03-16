@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PAGE_TRANSITION_DURATION } from "~/constants/app";
 import type { Ref, UnwrapRef } from "vue";
 
 type TCircle = {
@@ -347,7 +348,7 @@ onMounted(() => {
 onUnmounted(() => {
   setTimeout(() => {
     isDrawing = false;
-  }, 400);
+  }, PAGE_TRANSITION_DURATION);
   controller.abort();
 });
 </script>
