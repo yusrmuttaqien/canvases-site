@@ -16,6 +16,11 @@
     @slot;
   }
 }
+@custom-variant 600 {
+  @media (width >= 37.5rem) {
+    @slot;
+  }
+}
 @utility hide-scrollbar {
   --ms-overflow-style: none;
   scrollbar-width: none;
@@ -39,7 +44,6 @@ main {
   @apply hide-scrollbar min-h-dvh min-w-full bg-amber-300;
 }
 
-/* TODO: Try javascript page transition with Transition hooks */
 .page-leave-active {
   position: relative;
   transition:

@@ -1,13 +1,5 @@
-export type GSAPStates = {
-  isInitialized: boolean;
-  hmr: {
-    last: number;
-    recent: number;
-  };
-};
-
 export default function useGSAPStates() {
-  return useState<GSAPStates>("gsap-states", () => ({
+  return useState("gsap-states", () => ({
     isInitialized: false,
     hmr: {
       last: 0,

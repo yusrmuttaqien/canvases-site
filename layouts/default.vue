@@ -17,6 +17,6 @@ useHead({
 
 <template>
   <Navbar />
-  <!-- <GithubLink /> -->
+  <GithubLink />
   <slot />
 </template>

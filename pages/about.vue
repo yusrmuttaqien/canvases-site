@@ -3,10 +3,10 @@ import gsap from "gsap";
 import { transform } from "motion";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AmCodeArrow } from "#components";
 
 let gsapCtx: gsap.Context | undefined;
 let setMainTransition: gsap.core.Tween;
-let controller: AbortController | undefined;
 const isSettled = usePageSettled();
 const pageTransition = usePtSlideUp();
 const explanations = [
@@ -23,6 +23,21 @@ const explanations = [
       trigger: "wrapper-what-learned",
     },
     text: "by creating this website, I learned about the beauty and flaws of Vue & Nuxt.js (I am a former React & Next.js dev ⚛️. I found Vue & Nuxt to be miles more delightful 🥰), more about GSAP and layout animations, and of course, HTML Canvas 🎨.",
+  },
+  {
+    ids: {
+      target: "invitation",
+      trigger: "wrapper-invitation",
+    },
+    text: "if you're interested also in learning these things. Well, you can be too! Within each pages of this website, you can click the code repo link to see the code (don't forget to give a star ⭐️ too)",
+    slot: AmCodeArrow,
+  },
+  {
+    ids: {
+      target: "goodbye",
+      trigger: "wrapper-goodbye",
+    },
+    text: "that's all for now, expect to see more canvas or transition or layout animation in this website! G'day 👋",
   },
 ];
 
@@ -126,72 +141,6 @@ function animateHero() {
     "<0.3",
   );
 }
-function animateParagraph(
-  controller: AbortController,
-  target: string,
-  trigger: string,
-  classToRelease?: string[],
-) {
-  let splits: SplitType;
-  let ctx: gsap.Context;
-  const debouncedReRun = useDebounceFn(reRun, 1000);
-
-  function run(reRun: boolean = false) {
-    splits = new SplitType(`#${target}`, {
-      types: "lines,words,chars",
-      tagName: "span",
-    });
-
-    document
-      .getElementById(target)
-      ?.classList.remove(...(classToRelease || []));
-
-    ctx = gsap.context(() => {
-      gsap.set(splits.words, {
-        overflow: "hidden",
-      });
-      gsap.set(splits.chars, {
-        y: reRun ? "100%" : "0%",
-        opacity: 0.3,
-        letterSpacing: "-0.05em",
-      });
-      gsap.to(splits.chars, {
-        scrollTrigger: {
-          scrub: 1,
-          start: "center bottom",
-          end: "bottom bottom",
-          trigger: `#${trigger}`,
-        },
-        opacity: 1,
-        ease: "none",
-        stagger: 0.1,
-      });
-
-      if (reRun) {
-        gsap.to(splits.chars, {
-          y: "0%",
-        });
-      }
-    });
-  }
-  function reRun() {
-    ctx?.kill();
-    gsap.set(splits.words, {
-      overflow: "hidden",
-    });
-    gsap.to(splits.chars, {
-      y: "100%",
-      onComplete: () => {
-        run(true);
-      },
-    });
-  }
-
-  run();
-  window.addEventListener("resize", debouncedReRun, {
-    signal: controller.signal,
-  });
-}
 function animatePage() {
   const styles = getComputedStyle(document.documentElement);
   const black = styles.getPropertyValue("--color-black");
@@ -224,37 +173,27 @@ function animatePage() {
     color: amber,
   });
 }
-function animate(controller: AbortController) {
+function animate() {
   gsap.registerPlugin(ScrollTrigger);
 
   gsapCtx = gsap.context(() => {
     animateHero();
     animatePage();
-    explanations.forEach((explanation) => {
-      animateParagraph(
-        controller,
-        explanation.ids.target,
-        explanation.ids.trigger,
-        ["opacity-30"],
-      );
-    });
   });
 }
 
+useCrStates(
+  "https://github.com/yusrmuttaqien/canvases-site/blob/main/pages/about.vue",
+);
 definePageMeta({ pageTransition });
 useGsapInitial(
-  () => {
-    controller = new AbortController();
-
-    animate(controller);
-  },
+  animate,
   (isLeaving) => {
     if (isLeaving) setMainTransition?.revert();
   },
   undefined,
   () => {
     gsapCtx?.revert();
-    controller?.abort();
   },
 );
 </script>
@@ -302,18 +241,30 @@ useGsapInitial(
         </h1>
       </div>
     </section>
-    <section
+    <AmTextSection
       :key="explanation.text"
-      :id="explanation.ids.trigger"
+      :contents="explanation"
+      :has-slot="Boolean(explanation.slot)"
       v-for="explanation in explanations"
-      class="grid min-h-dvh place-content-center py-36"
     >
-      <p
-        :id="explanation.ids.target"
-        class="max-w-[50rem] text-4xl leading-[1.2em] font-bold opacity-30"
+      <component :is="explanation.slot" class="w-36" />
+    </AmTextSection>
+    <section
+      class="@container relative h-[33dvw] bg-amber-300"
+      :style="{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }"
+    >
+      <div
+        class="fixed bottom-0 grid h-[33dvw] place-content-end overflow-hidden"
       >
-        {{ explanation.text }}
-      </p>
+        <p
+          id="footer-text"
+          class="font-grand pointer-events-none -ml-[0.012em] text-center
+            text-[calc(100cqw/13*3.4)] text-black uppercase"
+        >
+          yusrmuttaqien
+        </p>
+        <p class="text-center font-extrabold text-black">@2024</p>
+      </div>
     </section>
   </main>
 </template>
@@ -326,7 +277,8 @@ p#tell-scroll {
 }
 
 h1,
-h1 span {
+h1 span,
+#footer-text {
   @apply before:-mb-[0.305em] before:table after:-mt-[0.32em] after:table;
 }
 </style>

@@ -191,6 +191,9 @@ function createSquare(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
 }
 
 definePageMeta({ pageTransition });
+useCrStates(
+  "https://github.com/yusrmuttaqien/canvases-site/blob/main/pages/collision/square.vue",
+);
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

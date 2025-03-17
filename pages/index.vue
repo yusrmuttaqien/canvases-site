@@ -96,6 +96,9 @@ function reDraw(e: MouseEvent) {
 }
 
 definePageMeta({ pageTransition });
+useCrStates(
+  "https://github.com/yusrmuttaqien/canvases-site/blob/main/pages/index.vue",
+);
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;
