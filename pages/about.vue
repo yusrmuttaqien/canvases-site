@@ -37,7 +37,7 @@ const explanations = [
       target: "goodbye",
       trigger: "wrapper-goodbye",
     },
-    text: "that's all for now, expect to see more canvas or transition or layout animation in this website! G'day 👋",
+    text: "that's all for now, expect to see more canvas or transition or layout animation in this website soon! (I'm open to contribution) G'day 👋",
   },
 ];
 
@@ -254,7 +254,7 @@ useGsapInitial(
       :style="{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }"
     >
       <div
-        class="fixed bottom-0 grid h-[33dvw] place-content-end overflow-hidden"
+        class="fixed bottom-0 grid h-[33dvw] place-content-center overflow-hidden"
       >
         <p
           id="footer-text"
