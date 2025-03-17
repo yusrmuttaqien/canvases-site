@@ -37,7 +37,7 @@ const explanations = [
       target: "goodbye",
       trigger: "wrapper-goodbye",
     },
-    text: "that's all for now, expect to see more canvas or transition or layout animation in this website soon! (I'm open to contribution) G'day 👋",
+    text: "that is all for now, expect to see more canvas or transition or layout animation in this website soon! (I'm open to contribution) G'day 👋",
   },
 ];
 
