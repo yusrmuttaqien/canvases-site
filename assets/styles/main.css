@@ -29,28 +29,29 @@
   }
 }
 
-#__nuxt {
-  @apply relative;
-}
-body:has(main.page-enter-active),
-body:has(main.page-leave-active) {
-  @apply overflow-hidden;
-}
-
 html,
 body,
 #__nuxt,
 main {
   @apply hide-scrollbar min-h-dvh min-w-full bg-amber-300;
 }
+#__nuxt {
+  @apply isolate;
+}
+body:has(main.page-enter-active),
+body:has(main.page-leave-active) {
+  @apply overflow-hidden;
+}
 
 .page-leave-active {
+  z-index: 0;
   position: relative;
   transition:
     all 0.6s cubic-bezier(0.33, 1, 0.68, 1),
     translate 0.45s cubic-bezier(0.33, 1, 0.68, 1) 0.15s;
 }
 .page-enter-active {
+  z-index: 1;
   transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
   position: absolute;
   top: var(--scroll-y-slide-up);
