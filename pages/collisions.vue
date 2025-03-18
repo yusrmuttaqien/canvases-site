@@ -34,9 +34,6 @@ let mousePos = ref<UnwrapRef<TCircle["mousePos"]>>({
 });
 
 class Circle {
-  dx: number = 0;
-  dy: number = 0;
-  mass: number = 0;
   #el: HTMLCanvasElement;
   #radiusRestore: number = 0;
   #mousePos: TCircle["mousePos"];
@@ -46,6 +43,9 @@ class Circle {
   x: number = 0;
   y: number = 0;
   radius: number;
+  dx: number = 0;
+  dy: number = 0;
+  mass: number = 0;
   fillStyle: string = "#ff0000";
 
   constructor(
@@ -177,7 +177,7 @@ class Circle {
   #updateMouseInteraction() {
     if (!this.#mousePos.value.x || !this.#mousePos.value.y) {
       this.fillStyle = this.#fillStyleRestore;
-      this.radius = this.#quickEase(this.radius, this.#radiusRestore);
+      this.radius = this.#quickEase(this.radius, this.#radiusRestore, 0.03);
 
       return;
     }
@@ -200,7 +200,7 @@ class Circle {
       this.radius = this.#quickEase(this.radius, grow);
     } else {
       this.fillStyle = this.#fillStyleRestore;
-      this.radius = this.#quickEase(this.radius, this.#radiusRestore);
+      this.radius = this.#quickEase(this.radius, this.#radiusRestore, 0.03);
     }
   }
 

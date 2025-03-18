@@ -21,6 +21,10 @@ export const routes: Routes = [
     name: "Collisions ⚠️",
     path: "/collisions",
   },
+  {
+    name: "Circular motion ⚠️",
+    path: "/circular-motion",
+  },
 ];
 export const routesChildrens: RoutesChildrens = {
   "/collision": [
