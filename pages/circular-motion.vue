@@ -20,6 +20,10 @@ type TParticle = {
 };
 const canvas = ref<HTMLCanvasElement | null>(null);
 const pageTransition = usePtSlideUp();
+const sizeRestore = {
+  width: 0,
+  height: 0,
+};
 
 const controller = new AbortController();
 let isDrawing = true;
@@ -127,31 +131,31 @@ class Particle {
     // Snap to target when close enough to prevent infinite micro-adjustments
     return Math.abs(newRadius - target) < 0.5 ? target : newRadius;
   }
-  #updateMouseInteraction() {
+  #updateMouseInteraction(xOffset: number, yOffset: number) {
     if (!this.#mousePos.value.x || !this.#mousePos.value.y) {
       this.#x1 = this.#quickEase(this.#x1, this.#xRestore, 0.03);
       this.#y1 = this.#quickEase(this.#y1, this.#yRestore, 0.03);
 
       return;
     }
-    const posX = this.#mousePos.value.x;
-    const posY = this.#mousePos.value.y;
+    const posX = this.#mousePos.value.x - xOffset;
+    const posY = this.#mousePos.value.y - yOffset;
 
     this.#x1 = this.#quickEase(this.#x1, posX);
     this.#y1 = this.#quickEase(this.#y1, posY);
   }
 
-  update() {
+  update(xOffset: number, yOffset: number) {
     const { x, y } = this;
-    this.#updateMouseInteraction();
+    this.#updateMouseInteraction(xOffset, yOffset);
     this.#updateMovement();
 
     this.x = Math.min(
-      Math.max(this.x, this.#radius),
+      Math.max(this.x + xOffset, this.#radius),
       this.#el.width - this.#radius,
     );
     this.y = Math.min(
-      Math.max(this.y, this.#radius),
+      Math.max(this.y + yOffset, this.#radius),
       this.#el.height - this.#radius,
     );
 
@@ -187,6 +191,8 @@ function create(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   const styles = getComputedStyle(document.documentElement);
   const amber = styles.getPropertyValue("--color-amber-300");
   const amberLength = amber.length;
+  sizeRestore.width = el.width;
+  sizeRestore.height = el.height;
 
   for (let i = 0; i < 50; i++) {
     particles.push(
@@ -208,7 +214,12 @@ function create(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
     ctx.fillStyle = amber.substring(0, amberLength - 1) + " / 0.05)";
     ctx.fillRect(0, 0, el.width, el.height);
 
-    particles.forEach((particle) => particle.update());
+    particles.forEach((particle) =>
+      particle.update(
+        (el.width - sizeRestore.width) / 2,
+        (el.height - sizeRestore.height) / 2,
+      ),
+    );
 
     if (isDrawing) requestAnimationFrame(loop);
   }
