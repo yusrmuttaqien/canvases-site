@@ -263,7 +263,7 @@ useGsapInitial(
         >
           yusrmuttaqien
         </p>
-        <p class="text-center font-extrabold text-black">@2024</p>
+        <p class="text-center font-extrabold text-black">@2025</p>
       </div>
     </section>
   </main>
