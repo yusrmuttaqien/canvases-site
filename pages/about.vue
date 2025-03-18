@@ -29,7 +29,7 @@ const explanations = [
       target: "invitation",
       trigger: "wrapper-invitation",
     },
-    text: "if you're interested also in learning these things. Well, you can be too! Within each pages of this website, you can click the code repo link to see the code (don't forget to give a star ⭐️ too)",
+    text: "if you're interested also in learning these things. Well, you can too! Within each pages of this website, you can click the code repo link to see the code (don't forget to give it a star ⭐️, too)",
     slot: AmCodeArrow,
   },
   {
