@@ -135,7 +135,8 @@ onUnmounted(() => {
     id="ym"
     to="/about"
     :data-active="currentRoute.path === '/about'"
-    class="fixed right-0 bottom-0 isolate z-10 block cursor-pointer mix-blend-difference"
+    class="fixed right-0 bottom-0 isolate z-10 block cursor-pointer text-white
+      mix-blend-difference"
   >
     <Motion
       as="span"
@@ -143,8 +144,9 @@ onUnmounted(() => {
       :layout-id="'path-highlight'"
       v-if="currentRoute.path === '/about'"
     />
+    <p class="text-[calc(3rem/5*1.36)] font-extrabold uppercase">about</p>
     <NavbarYm
-      class="relative z-10 w-12 text-white transition-colors duration-300"
+      class="relative z-10 mx-auto w-12 transition-colors duration-300"
     />
   </NuxtLink>
 </template>
@@ -158,7 +160,8 @@ nav button {
 }
 nav a.router-link-exact-active #text,
 nav button[data-active="true"] #text,
-#ym[data-active="true"] svg {
+#ym[data-active="true"] svg,
+#ym[data-active="true"] p {
   @apply relative z-10 text-black;
 }
 nav a span#background,
