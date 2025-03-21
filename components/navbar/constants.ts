@@ -25,6 +25,14 @@ export const routes: Routes = [
     name: "Circular motion ⚠️",
     path: "/circular-motion",
   },
+  {
+    name: "GLSL",
+    path: "/glsl",
+  },
+  {
+    name: "GLSL Three",
+    path: "/glsl-three",
+  },
 ];
 export const routesChildrens: RoutesChildrens = {
   "/collision": [

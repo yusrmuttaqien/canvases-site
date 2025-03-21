@@ -1,4 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
+import glsl from "vite-plugin-glsl";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -6,7 +7,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   // css: ["~/assets/styles/main.css"],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), glsl()],
   },
   router: {
     options: {
