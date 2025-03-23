@@ -1,6 +1,10 @@
+<script setup lang="ts">
+const pageTransition = usePtSlideUp();
+</script>
+
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage :transition="pageTransition" />
   </NuxtLayout>
   <NuxtRouteAnnouncer />
 </template>

@@ -26,6 +26,10 @@ export const routes: Routes = [
     path: "/circular-motion",
   },
   {
+    name: "Three...",
+    path: "/three",
+  },
+  {
     name: "GLSL",
     path: "/glsl",
   },
@@ -43,6 +47,40 @@ export const routesChildrens: RoutesChildrens = {
     {
       name: "Square",
       path: "/square",
+    },
+  ],
+  "/three": [
+    {
+      name: "Basics",
+      path: "/basics",
+    },
+    {
+      name: "Geometry buffer",
+      path: "/geometry-buffer",
+    },
+    {
+      name: "Primitives",
+      path: "/primitives",
+    },
+    {
+      name: "Materials",
+      path: "/materials",
+    },
+    {
+      name: "PBR material ⚠️",
+      path: "/pbr-material",
+    },
+    {
+      name: "Physical material ⚠️",
+      path: "/physical-material",
+    },
+    {
+      name: "Texture ⚠️",
+      path: "/texture",
+    },
+    {
+      name: "Solar system 🪐",
+      path: "/solar-system",
     },
   ],
 };
