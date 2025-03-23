@@ -1,11 +1,16 @@
-import tailwindcss from "@tailwindcss/vite";
 import glsl from "vite-plugin-glsl";
+import tailwindcss from "@tailwindcss/vite";
+import filterPages from "./utils/filter-pages";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  // css: ["~/assets/styles/main.css"],
+  hooks: {
+    "pages:extend"(pages) {
+      filterPages(pages);
+    },
+  },
   vite: {
     plugins: [tailwindcss(), glsl()],
   },
