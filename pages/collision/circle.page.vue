@@ -170,6 +170,7 @@ function createCircles(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   loop();
 }
 
+useCodeRepo("/pages/collision/circle.page.vue");
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

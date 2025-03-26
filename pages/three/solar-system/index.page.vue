@@ -11,6 +11,7 @@ const canvas = ref<HTMLCanvasElement>();
 const controller = ref<AbortController>();
 const sceneClear = ref<VoidFunction>();
 
+useCodeRepo("/pages/three/solar-system/index.page.vue");
 onMounted(() => {
   sceneClear.value = scripts({ canvas, controller, d, isLooping });
 });

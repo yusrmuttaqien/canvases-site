@@ -6,6 +6,7 @@ const d = ref(0);
 const canvas = ref<HTMLCanvasElement>();
 let controller: AbortController;
 
+useCodeRepo("/pages/three/basics.page.vue");
 onMounted(() => {
   const scene = new THREE.Scene();
   const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);

@@ -94,6 +94,7 @@ function reDraw(e: MouseEvent) {
   }, 300);
 }
 
+useCodeRepo("/pages/index.page.vue");
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

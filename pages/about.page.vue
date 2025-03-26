@@ -181,6 +181,7 @@ function animate() {
   });
 }
 
+useCodeRepo("/pages/about.page.vue");
 useGsapInitial(
   animate,
   (isLeaving) => {

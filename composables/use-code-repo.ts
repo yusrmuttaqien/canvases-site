@@ -1,7 +1,10 @@
-import { PAGE_TRANSITION_DURATION } from "~/constants/app";
+import { PAGE_TRANSITION_DURATION, CR_PATH } from "~/constants/app";
 import type { Ref } from "vue";
 
-export default function useCodeRepo(link?: Ref<string>) {
+export default function useCodeRepo(
+  directoryFromRoot: string,
+  root: string = CR_PATH,
+) {
   const states = useState<{
     repo: string;
     timeout: NodeJS.Timeout | undefined;
@@ -10,10 +13,10 @@ export default function useCodeRepo(link?: Ref<string>) {
     timeout: undefined,
   }));
 
-  watchEffect(() => {
+  onMounted(() => {
     clearTimeout(states.value.timeout);
 
-    if (link) states.value.repo = link.value;
+    states.value.repo = `${root}${directoryFromRoot}`;
   });
   onBeforeUnmount(() => {
     states.value.timeout = setTimeout(() => {

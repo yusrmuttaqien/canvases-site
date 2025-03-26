@@ -62,6 +62,7 @@ function render() {
   renderer.render(scene, camera);
 }
 
+useCodeRepo("/pages/glsl-three.page.vue");
 onMounted(async () => {
   await nextTick(() => {
     init();

@@ -6,6 +6,7 @@ const d = ref(0);
 const canvas = ref<HTMLCanvasElement>();
 let controller: AbortController;
 
+useCodeRepo("/pages/three/geometry-buffer.page.vue");
 onMounted(() => {
   const scene = new THREE.Scene();
 

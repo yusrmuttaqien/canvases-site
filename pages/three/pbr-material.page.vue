@@ -8,6 +8,7 @@ const canvas = ref<HTMLCanvasElement>();
 let controller: AbortController;
 let pane: Pane;
 
+useCodeRepo("/pages/three/pbr-material.page.vue");
 onMounted(() => {
   const scene = new THREE.Scene();
   pane = new Pane();

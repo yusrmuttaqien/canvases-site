@@ -116,6 +116,7 @@ function init() {
   );
 }
 
+useCodeRepo("/pages/three/texture.page.vue");
 onMounted(() => {
   init();
 });

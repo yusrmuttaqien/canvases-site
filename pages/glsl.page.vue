@@ -16,6 +16,7 @@ function reRun() {
   resizeCanvas();
 }
 
+useCodeRepo("/pages/glsl.page.vue");
 onMounted(async () => {
   resizeCanvas();
   window.addEventListener("resize", reRun, {
