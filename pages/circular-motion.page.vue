@@ -19,7 +19,6 @@ type TParticle = {
   }>;
 };
 const canvas = ref<HTMLCanvasElement | null>(null);
-const pageTransition = usePtSlideUp();
 const sizeRestore = {
   width: 0,
   height: 0,
@@ -227,10 +226,6 @@ function create(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   loop();
 }
 
-definePageMeta({ pageTransition });
-useCrStates(
-  "https://github.com/yusrmuttaqien/canvases-site/blob/main/pages/circular-motion.vue",
-);
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;

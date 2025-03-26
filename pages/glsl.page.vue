@@ -2,7 +2,6 @@
 import GLSLFragmentShader from "~/assets/glsl/glsl.frag";
 import GLSLVertexShader from "~/assets/glsl/glsl.vert";
 
-const pageTransition = usePtSlideUp();
 const canvas = ref<HTMLCanvasElement | null>(null);
 const controller = new AbortController();
 
@@ -17,7 +16,6 @@ function reRun() {
   resizeCanvas();
 }
 
-definePageMeta({ pageTransition });
 onMounted(async () => {
   resizeCanvas();
   window.addEventListener("resize", reRun, {

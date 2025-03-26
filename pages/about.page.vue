@@ -8,7 +8,6 @@ import { AmCodeArrow } from "#components";
 let gsapCtx: gsap.Context | undefined;
 let setMainTransition: gsap.core.Tween;
 const isSettled = usePageSettled();
-const pageTransition = usePtSlideUp();
 const explanations = [
   {
     ids: {
@@ -182,10 +181,6 @@ function animate() {
   });
 }
 
-useCrStates(
-  "https://github.com/yusrmuttaqien/canvases-site/blob/main/pages/about.vue",
-);
-definePageMeta({ pageTransition });
 useGsapInitial(
   animate,
   (isLeaving) => {

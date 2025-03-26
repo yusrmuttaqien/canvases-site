@@ -1,6 +1,7 @@
 import { PAGE_TRANSITION_DURATION } from "~/constants/app";
+import type { Ref } from "vue";
 
-export default function useCRStates(link?: string) {
+export default function useCRStates(link?: Ref<string>) {
   const states = useState<{
     repo: string;
     timeout: NodeJS.Timeout | undefined;
@@ -9,10 +10,10 @@ export default function useCRStates(link?: string) {
     timeout: undefined,
   }));
 
-  onMounted(() => {
+  watchEffect(() => {
     clearTimeout(states.value.timeout);
 
-    if (link) states.value.repo = link;
+    if (link) states.value.repo = link.value;
   });
   onBeforeUnmount(() => {
     states.value.timeout = setTimeout(() => {

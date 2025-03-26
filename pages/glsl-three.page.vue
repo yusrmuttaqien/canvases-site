@@ -3,7 +3,6 @@ import * as THREE from "three";
 import GLSLFragmentShader from "~/assets/glsl/glsl-three.frag";
 import GLSLVertexShader from "~/assets/glsl/glsl-three.vert";
 
-const pageTransition = usePtSlideUp();
 const container = ref<HTMLElement | null>(null);
 const controller = new AbortController();
 
@@ -37,7 +36,6 @@ function init() {
   const mesh = new THREE.Mesh(geometry, material);
 
   scene.add(mesh);
-  renderer.setPixelRatio(window.devicePixelRatio);
   container.value?.appendChild(renderer.domElement);
 
   resize();
@@ -64,7 +62,6 @@ function render() {
   renderer.render(scene, camera);
 }
 
-definePageMeta({ pageTransition });
 onMounted(async () => {
   await nextTick(() => {
     init();

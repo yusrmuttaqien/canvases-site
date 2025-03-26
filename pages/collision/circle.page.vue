@@ -18,7 +18,6 @@ type TCircle = {
   }>;
 };
 const canvas = ref<HTMLCanvasElement | null>(null);
-const pageTransition = usePtSlideUp();
 
 const controller = new AbortController();
 let isDrawing = true;
@@ -171,10 +170,6 @@ function createCircles(ctx: CanvasRenderingContext2D, el: HTMLCanvasElement) {
   loop();
 }
 
-definePageMeta({ pageTransition });
-useCrStates(
-  "https://github.com/yusrmuttaqien/canvases-site/blob/main/pages/collision/circle.vue",
-);
 onMounted(() => {
   if (!canvas.value) return;
   context = canvas.value.getContext("2d") as CanvasRenderingContext2D;
