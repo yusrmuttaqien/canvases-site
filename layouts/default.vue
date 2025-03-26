@@ -5,9 +5,14 @@ import "~/assets/styles/main.css";
 
 const route = useRoute();
 const codeRepo = computed(() => {
-  const path = route.path === "/" ? "/index" : route.path;
+  const components = Array.from(route.matched)[0].components;
 
-  return `${CR_PATH.START}${path}${CR_PATH.END}`;
+  if (!components) return "";
+  // @ts-expect-error
+  const filePath = components.default.__file;
+  const indexOfPageString = filePath.indexOf("/pages");
+
+  return `${CR_PATH}${filePath.substring(indexOfPageString)}`;
 });
 
 useCodeRepo(codeRepo);
