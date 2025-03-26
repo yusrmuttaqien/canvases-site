@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { PAGE_TRANSITION_DURATION } from "~/constants/app";
 import scripts from "./scripts";
+import { CR_PATH } from "~/constants/app";
+import { PAGE_TRANSITION_DURATION } from "~/constants/app";
 
 const states = useGsapStates();
 const isHMR = computed(() => states.value.hmr.last !== states.value.hmr.recent);
@@ -10,7 +11,9 @@ const isLooping = ref(true);
 const canvas = ref<HTMLCanvasElement>();
 const controller = ref<AbortController>();
 const sceneClear = ref<VoidFunction>();
+const codeRepo = ref(`${CR_PATH.START}/three/solar-system/index${CR_PATH.END}`);
 
+useCodeRepo(codeRepo);
 onMounted(() => {
   sceneClear.value = scripts({ canvas, controller, d, isLooping });
 });

@@ -1,7 +1,7 @@
 import { PAGE_TRANSITION_DURATION } from "~/constants/app";
 import type { Ref } from "vue";
 
-export default function useCRStates(link?: Ref<string>) {
+export default function useCodeRepo(link?: Ref<string>) {
   const states = useState<{
     repo: string;
     timeout: NodeJS.Timeout | undefined;

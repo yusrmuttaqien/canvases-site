@@ -3,7 +3,7 @@ import { motion } from "motion-v";
 import { NuxtLink } from "#components";
 
 const MotionLink = motion.create(NuxtLink);
-const states = useCrStates();
+const states = useCodeRepo();
 </script>
 
 <template>
